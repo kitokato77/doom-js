@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Raycaster</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas" width="640" height="480"></canvas>
+        <div id="ui-layer" class="hidden">
+            <div id="trap-timer-container" class="hidden">
+                <p>TRAP ACTIVATED</p>
+                <h2 id="trap-timer">15.00</h2>
+            </div>
+            
+            <div id="hud">
+                <div class="hud-left">
+                    <div class="hud-item ammo-item">
+                        <span>AMMO [1-9]:</span> 
+                        <span id="ammo-display">1</span>
+                    </div>
+                    <div class="hud-item" style="font-size:12px; margin-top:5px; color:#aaa;">
+                        <span>SCORE: <span id="score-display">0</span></span>
+                    </div>
+                </div>
+                <div class="hud-right">
+                    <div class="hud-item health-item">
+                        <span>INTEGRITY:</span> 
+                        <span id="hearts-display">❤️❤️❤️</span>
+                    </div>
+                    <div class="hud-item" style="font-size:12px; margin-top:5px; color:#aaa;">
+                        <span>LEVEL: <span id="level-display">1</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="controls">WASD: Move | ←/→: Turn | SPACE: Shoot | Q/E or 1-9: Change Ammo</p>
+        </div>
+
+        <div id="main-menu">
+            <h1 class="glitch-title">MATH-BLASTER</h1>
+            <p>LINEAR ALGEBRA PROTOCOL</p>
+            <div class="menu-options">
+                <button id="btn-play">PLAY PROTOCOL</button>
+                <button id="btn-highscore-menu">HIGHSCORES</button>
+                <button id="btn-exit">ABORT (EXIT)</button>
+            </div>
+        </div>
+
+        <div id="highscore-screen" class="hidden">
+            <h1 style="color: #0ff; margin-bottom:20px;">TOP OPERATIVES</h1>
+            <table id="highscore-table">
+                <thead><tr><th>RANK</th><th>NAME</th><th>LEVEL</th><th>SCORE</th></tr></thead>
+                <tbody id="highscore-body"></tbody>
+            </table>
+            <button id="btn-close-hs" style="margin-top:30px; padding: 10px 20px; background:#000; color:#0ff; border:2px solid #0ff; font-family:'Press Start 2P'; cursor:pointer;">BACK</button>
+        </div>
+
+        <div id="level-cleared-screen" class="hidden">
+            <h1 style="color: #55ff55; text-shadow: 0 0 20px #00ff00;">LEVEL CLEARED</h1>
+            <p id="lc-stats">LEVEL: 1 | SCORE: 0</p>
+            
+            <div style="margin: 30px 0; display:flex; flex-direction:column; gap:15px;">
+                <button id="btn-continue" style="padding: 15px; background:#000; color:#0f0; border:2px solid #0f0; font-family:'Press Start 2P'; cursor:pointer;">DESCEND (CONTINUE)</button>
+                
+                <div style="border: 1px solid #555; padding: 15px; margin-top:20px;">
+                    <p style="font-size:10px; margin-bottom:10px;">SAVE RECORD & ABORT</p>
+                    <input type="text" id="player-name-lc" maxlength="3" placeholder="AAA" style="background:#000; color:#fff; border:2px solid #fff; padding:5px; font-family:'Press Start 2P'; width:80px; text-align:center; font-size:16px; text-transform:uppercase;">
+                    <button id="btn-save-quit" style="padding: 10px; background:#500; color:#fff; border:2px solid #f00; font-family:'Press Start 2P'; cursor:pointer; margin-left:10px;">SAVE RECORD</button>
+                    <button id="btn-skip-quit-lc" style="padding: 10px; background:#333; color:#aaa; border:2px solid #aaa; font-family:'Press Start 2P'; cursor:pointer; margin-top:10px;">SKIP & MENU</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-over-screen" class="hidden">
+            <h1>SYSTEM FAILURE</h1>
+            <p>VITAL SIGNS LOST.</p>
+            <p id="go-stats" style="color:#ffaaaa;">LEVEL: 1 | SCORE: 0</p>
+            
+            <div style="border: 1px solid #555; padding: 15px; margin-top:30px;">
+                <p style="font-size:10px; margin-bottom:10px; color:#fff;">SAVE RECORD</p>
+                <input type="text" id="player-name-go" maxlength="3" placeholder="AAA" style="background:#000; color:#fff; border:2px solid #fff; padding:5px; font-family:'Press Start 2P'; width:80px; text-align:center; font-size:16px; text-transform:uppercase;">
+                <button id="btn-save-go" style="padding: 10px; background:#500; color:#fff; border:2px solid #f00; font-family:'Press Start 2P'; cursor:pointer; margin-left:10px;">SAVE RECORD</button>
+                <button id="btn-skip-go" style="padding: 10px; background:#333; color:#aaa; border:2px solid #aaa; font-family:'Press Start 2P'; cursor:pointer; margin-top:10px;">SKIP & MENU</button>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
