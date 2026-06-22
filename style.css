@@ -381,6 +381,7 @@ canvas {
     justify-content: space-between;
     align-items: flex-end;
     z-index: 100;
+    pointer-events: auto; /* Required because ui-layer is pointer-events: none */
 }
 .mc-row {
     display: flex;
