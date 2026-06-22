@@ -43,18 +43,12 @@ function initAudio() {
     audioInit = true;
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     zzfxX = new AudioContext();
+    audioAssets.bgmMenu.play().catch(e => { });
     
-    // Unlock all assets on first interaction
+    // Unlock other assets
     for(let key in audioAssets) {
-        audioAssets[key].load();
-        if (key === 'bgmMenu') {
-            audioAssets[key].play().catch(e => { });
-        } else {
-            // Play then immediately pause to unlock them
-            audioAssets[key].play().then(() => {
-                audioAssets[key].pause();
-                audioAssets[key].currentTime = 0;
-            }).catch(e => { });
+        if (key !== 'bgmMenu') {
+            audioAssets[key].load();
         }
     }
 }
@@ -84,18 +78,10 @@ if (btnFS) {
     btnFS.addEventListener('click', () => {
         initAudio();
         if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().then(() => {
-                if (screen.orientation && screen.orientation.lock) {
-                    screen.orientation.lock('landscape').catch(e => {});
-                }
-            }).catch(e => {});
+            document.documentElement.requestFullscreen().catch(e => {});
             btnFS.textContent = '❌';
         } else {
-            document.exitFullscreen().then(() => {
-                if (screen.orientation && screen.orientation.unlock) {
-                    screen.orientation.unlock();
-                }
-            }).catch(e => {});
+            document.exitFullscreen().catch(e => {});
             btnFS.textContent = '⛶';
         }
     });
