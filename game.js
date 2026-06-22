@@ -36,10 +36,21 @@ audioAssets.bgmGame.volume = 0.5;
 audioAssets.footstep.playbackRate = 1.5;
 
 function initAudio() {
-    if (audioInit) return;
+    if (audioInit) {
+        if (zzfxX && zzfxX.state === 'suspended') zzfxX.resume();
+        return;
+    }
     audioInit = true;
-    zzfxX = new (window.AudioContext || webkitAudioContext)();
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    zzfxX = new AudioContext();
     audioAssets.bgmMenu.play().catch(e => { });
+    
+    // Unlock other assets
+    for(let key in audioAssets) {
+        if (key !== 'bgmMenu') {
+            audioAssets[key].load();
+        }
+    }
 }
 
 function playSound(name) {
@@ -60,6 +71,21 @@ const sfx = {
 
 document.addEventListener('click', initAudio, { once: true });
 document.addEventListener('touchstart', initAudio, { once: true, passive: true });
+document.addEventListener('touchend', initAudio, { once: true, passive: true });
+
+const btnFS = document.getElementById('btn-fullscreen-global');
+if (btnFS) {
+    btnFS.addEventListener('click', () => {
+        initAudio();
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(e => {});
+            btnFS.textContent = '❌';
+        } else {
+            document.exitFullscreen().catch(e => {});
+            btnFS.textContent = '⛶';
+        }
+    });
+}
 
 // Menu Buttons
 document.getElementById('btn-play').addEventListener('click', () => {
