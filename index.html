@@ -38,6 +38,26 @@
             </div>
 
             <p class="controls">WASD: Move | ←/→: Turn | SPACE: Shoot | Q/E or 1-9: Change Ammo</p>
+            
+            <div id="mobile-controls">
+                <div class="mc-left">
+                    <div class="mc-row"><button class="mc-btn" id="mc-w">▲</button></div>
+                    <div class="mc-row">
+                        <button class="mc-btn" id="mc-tl">↶</button>
+                        <button class="mc-btn" id="mc-s">▼</button>
+                        <button class="mc-btn" id="mc-tr">↷</button>
+                    </div>
+                </div>
+                <div class="mc-right">
+                    <div class="mc-row" style="margin-bottom:10px;">
+                        <button class="mc-btn" id="mc-q">WPN-</button>
+                        <button class="mc-btn" id="mc-e">WPN+</button>
+                    </div>
+                    <div class="mc-row" style="justify-content: flex-end;">
+                        <button class="mc-btn shoot-btn" id="mc-space">FIRE</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="main-menu">
@@ -46,6 +66,7 @@
             <div class="menu-options">
                 <button id="btn-play">PLAY PROTOCOL</button>
                 <button id="btn-highscore-menu">HIGHSCORES</button>
+                <button id="btn-about-menu">ABOUT ME</button>
                 <button id="btn-exit">ABORT (EXIT)</button>
             </div>
         </div>
@@ -85,6 +106,53 @@
                 <input type="text" id="player-name-go" maxlength="3" placeholder="AAA" style="background:#000; color:#fff; border:2px solid #fff; padding:5px; font-family:'Press Start 2P'; width:80px; text-align:center; font-size:16px; text-transform:uppercase;">
                 <button id="btn-save-go" style="padding: 10px; background:#500; color:#fff; border:2px solid #f00; font-family:'Press Start 2P'; cursor:pointer; margin-left:10px;">SAVE RECORD</button>
                 <button id="btn-skip-go" style="padding: 10px; background:#333; color:#aaa; border:2px solid #aaa; font-family:'Press Start 2P'; cursor:pointer; margin-top:10px;">SKIP & MENU</button>
+            </div>
+        </div>
+
+        <div id="about-screen" class="hidden">
+            <div class="credits-modal-content">
+                <button class="credits-close-btn" id="btn-close-about">✕</button>
+
+                <div class="credits-body">
+                    <!-- Photo -->
+                    <div class="credits-photo-wrap">
+                        <img src="asset/fotodiri.png" alt="Developer Photo" class="credits-photo">
+                        <div class="credits-photo-ring"></div>
+                    </div>
+
+                    <!-- Info -->
+                    <div class="credits-info">
+                        <div class="credits-game-title">MATH-BLASTER</div>
+                        <div class="credits-tag">Game Education &amp; Simulation — Informatics ITS 2026</div>
+
+                        <div class="credits-divider"></div>
+
+                        <div class="credits-person">
+                            <div class="credits-role">Developer &amp; Designer</div>
+                            <div class="credits-name">Mochammad Irham Maulana</div>
+                            <div class="credits-contact-row">
+                                <span>✉</span>
+                                <a href="mailto:maulanaoppo14@gmail.com" class="credits-email">maulanaoppo14@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="credits-divider"></div>
+
+                        <div class="credits-tech">
+                            <div class="credits-tech-label">Built With</div>
+                            <div class="credits-tech-pills">
+                                <span class="credits-pill">HTML5</span>
+                                <span class="credits-pill">Vanilla JS Raycaster</span>
+                                <span class="credits-pill">ZzFX Audio</span>
+                                <span class="credits-pill">CSS3</span>
+                            </div>
+                        </div>
+
+                        <div class="credits-copyright">
+                            © 2026 Mochammad Irham Maulana · Informatika ITS
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

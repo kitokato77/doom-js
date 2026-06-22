@@ -220,3 +220,245 @@ canvas {
     z-index: 2;
     pointer-events: none;
 }
+
+/* =============================================
+   CREDITS / ABOUT MODAL
+   ============================================= */
+#about-screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 10, 20, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
+.credits-modal-content {
+    max-width: 680px;
+    width: 90%;
+    background: rgba(5, 5, 10, 0.96);
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+    font-family: 'Press Start 2P', monospace;
+    text-align: left;
+}
+
+.credits-close-btn {
+    position: absolute;
+    top: 15px; right: 15px;
+    background: transparent;
+    border: 2px solid #00ffff;
+    color: #00ffff;
+    width: 30px; height: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    z-index: 10;
+}
+.credits-close-btn:hover { background: #00ffff; color: #000; box-shadow: 0 0 10px #00ffff; }
+
+.credits-body {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    padding: 30px;
+}
+
+/* Photo */
+.credits-photo-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+.credits-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    border: 3px solid #00ffff;
+    box-shadow: 0 0 20px rgba(0,255,255,0.4);
+}
+.credits-photo-ring {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px dashed #00ffff;
+    animation: credits-spin 10s linear infinite;
+}
+@keyframes credits-spin { to { transform: rotate(360deg); } }
+
+/* Info */
+.credits-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.credits-game-title {
+    font-size: 20px;
+    color: #00ffff;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 0px #000;
+}
+.credits-tag {
+    font-size: 8px;
+    color: #aaa;
+    line-height: 1.4;
+}
+.credits-divider {
+    height: 2px;
+    background: #00ffff;
+    opacity: 0.3;
+    margin: 15px 0;
+}
+.credits-role {
+    font-size: 8px;
+    color: #ff00ff;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+.credits-name {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.credits-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+}
+.credits-email {
+    color: #00ffff;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.credits-email:hover { color: #fff; text-shadow: 0 0 5px #00ffff; }
+
+.credits-tech-label {
+    font-size: 8px;
+    color: #ff00ff;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.credits-tech-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.credits-pill {
+    background: transparent;
+    border: 1px solid #00ffff;
+    color: #00ffff;
+    font-size: 8px;
+    padding: 6px 10px;
+}
+.credits-copyright {
+    margin-top: 20px;
+    font-size: 8px;
+    color: #555;
+}
+
+/* =============================================
+   MOBILE CONTROLS & RESPONSIVENESS
+   ============================================= */
+#mobile-controls {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 100;
+}
+.mc-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+.mc-btn {
+    background: rgba(0, 255, 255, 0.2);
+    border: 2px solid #0ff;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-family: inherit;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 0 0 5px #0ff;
+    box-shadow: inset 0 0 10px rgba(0,255,255,0.3);
+}
+.mc-btn:active {
+    background: rgba(0, 255, 255, 0.6);
+}
+.shoot-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    border-color: #f00;
+    background: rgba(255, 0, 0, 0.2);
+    color: #f00;
+    font-weight: bold;
+    text-shadow: 0 0 5px #f00;
+    box-shadow: inset 0 0 10px rgba(255,0,0,0.3);
+}
+.shoot-btn:active {
+    background: rgba(255, 0, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+    #mobile-controls { display: flex; }
+    .controls { display: none; }
+    
+    #hud { 
+        bottom: auto; top: 0; padding: 10px; 
+        font-size: 10px; flex-direction: column; 
+        background: rgba(0, 0, 0, 0.8);
+        border-top: none; border-bottom: 2px solid #0ff;
+    }
+    .hud-left { gap: 10px; margin-bottom: 5px; }
+    .hud-right { gap: 10px; }
+    #ammo-display { font-size: 16px; padding: 2px 8px; margin-left: 5px; }
+    
+    #trap-timer-container { top: 100px; padding: 10px; }
+    #trap-timer { font-size: 20px; }
+    
+    #game-container {
+        width: 100vw;
+        height: 100vh;
+        border: none;
+        border-radius: 0;
+    }
+    canvas {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .glitch-title { font-size: 24px; }
+    .menu-options button { padding: 10px 20px; font-size: 12px; }
+    
+    .credits-modal-content { width: 95%; }
+    .credits-photo { width: 80px; height: 80px; }
+    .credits-body { flex-direction: column; align-items: center; padding: 15px; gap: 15px; }
+    .credits-game-title { font-size: 16px; text-align: center; }
+    .credits-contact-row { flex-direction: column; }
+    
+    #highscore-table { width: 95%; font-size: 8px; }
+    #highscore-table th, #highscore-table td { padding: 5px; }
+}
